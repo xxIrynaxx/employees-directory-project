@@ -1,0 +1,117 @@
+@import '../../../../styles/breakpoints.scss';
+
+.sort-modal {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 8px;
+  z-index: 1;
+
+  @include for-desktop {
+    align-items: center;
+    padding-bottom: 8px;
+  }
+
+  &__content {
+    background: #fff;
+    padding: 0 16px;
+    width: 359px;
+    height: 184px;
+    border: 1px solid #ccc;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+
+    @include for-desktop {
+      width: 373px;
+      height: 192px;
+      border-radius: 20px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    height: 52px;
+    margin-bottom: 8px;
+
+    @include for-desktop {
+      margin-bottom: 16px;
+    }
+
+    &-title {
+      flex: 1;
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 600;
+      text-align: center;
+      color: #050510;
+    }
+  }
+
+  &__close-icon {
+    display: none;
+    cursor: pointer;
+
+    @include for-desktop {
+      display: flex;
+      margin-right: 14px;
+      color: #c3c3c6;
+    }
+  }
+
+  &__radio {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding-left: 42px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #6534ff;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #05051016;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+input[type='radio']:checked + .sort-modal__radio::before {
+  background-color: #6534ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type='radio']:checked + .sort-modal__radio::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+}

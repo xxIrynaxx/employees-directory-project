@@ -1,0 +1,27 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  width: 343px;
+  margin-top: 22px;
+  margin: 22px 16px 0 16px;
+
+  &__avatar {
+    margin-right: 16px;
+  }
+
+  &__data {
+    flex: 1;
+  }
+
+  &__name {
+    width: 144px;
+    height: 16px;
+    border-radius: 50px;
+  }
+
+  &__position {
+    width: 80px;
+    height: 12px;
+    border-radius: 50px;
+  }
+}

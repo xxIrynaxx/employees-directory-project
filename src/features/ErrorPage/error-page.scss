@@ -1,0 +1,60 @@
+@import '../../styles/breakpoints.scss';
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 16px 0 16px;
+
+  @include for-desktop {
+    margin-top: 149px;
+  }
+
+  &__unexpected-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+  }
+
+  &__unexpected-desktop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 133px;
+  }
+
+  &__img {
+    width: 56px;
+    height: 56px;
+  }
+
+  &__title {
+    margin: 0;
+    margin-top: 8px;
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #050510;
+  }
+
+  &__description {
+    margin: 0;
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    color: #97979b;
+  }
+
+  &__link {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 700;
+    color: #6534ff;
+  }
+}

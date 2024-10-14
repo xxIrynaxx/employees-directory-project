@@ -1,0 +1,43 @@
+@import '../../../../styles/breakpoints.scss';
+
+.position-filter {
+  margin-top: 14px;
+  height: 36px;
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.33px solid #c3c3c6;
+    overflow-x: auto;
+
+    @include for-desktop {
+      justify-content: start;
+    }
+
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+
+    &-item {
+      padding: 8px 12px 7px 12px;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 20px;
+      color: #97979b;
+      cursor: pointer;
+
+      @include for-desktop {
+        padding: 9px 12px 7px;
+      }
+
+      &:first-child {
+        margin-left: 16px;
+      }
+
+      &_active {
+        font-weight: 600;
+        color: #050510;
+        border-bottom: 2px solid #6534ff;
+      }
+    }
+  }
+}
