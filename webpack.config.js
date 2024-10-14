@@ -49,13 +49,12 @@ module.exports = (_, argv) => {
       new HtmlWebpackPlugin({
         template: './src/index.html',
       }),
-      // new CopyPlugin({
-      //   patterns: [
-      //     { from: 'public/_redirects', to: '' },
-      //     { from: 'public/assets', to: 'assets' },
-      //     { from: 'public/favicon.svg', to: '' },
-      //   ],
-      // }),
+      new CopyPlugin({
+        patterns: [
+          { from: 'public/assets', to: 'assets' },
+          { from: 'public/favicon.svg', to: '' },
+        ],
+      }),
     ],
     devServer: {
       historyApiFallback: true,
