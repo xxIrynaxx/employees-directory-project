@@ -1,6 +1,6 @@
 # Employees Directory Project
 
-### [Site link](https://react-calendar1.netlify.app/)
+### [Site link](https://employees-directory-project.netlify.app/)
 
 Employees directory project supports desktop versions (from 1280px and more) and mobile (up-to-1279px)
 
