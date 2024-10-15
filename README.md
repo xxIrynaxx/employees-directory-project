@@ -6,11 +6,14 @@ Employees directory project supports desktop versions (from 1280px and more) and
 
 ### The tech stack is:
 
-- React
-- React Hooks
-- TS
-- ReduxToolkit
+- HTML5
+- BEM methodology
+- CSS3
 - Sass (Scss)
+- JS
+- TS
+- React
+- ReduxToolkit
 - Webpack
 - REST API
 
