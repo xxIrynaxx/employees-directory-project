@@ -18,8 +18,11 @@ const SearchBarSlice = createSlice({
     searchEmployees: (state, action: PayloadAction<string>) => {
       state.text = action.payload;
     },
+    clearInput: state => {
+      state.text = '';
+    },
   },
 });
 
-export const { searchEmployees } = SearchBarSlice.actions;
+export const { searchEmployees, clearInput } = SearchBarSlice.actions;
 export default SearchBarSlice.reducer;

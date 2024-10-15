@@ -1,26 +1,31 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { RootState, AppDispatch } from '@/store';
-import { setSortType, toggleVisibility } from '../../sortSlice';
 import { SortTypes } from '@/types/employeesDirectoryTypes';
+import { setSortType, toggleVisibility } from '../../sortSlice';
 import './sort.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 const Sort = () => {
   const selectedSort = useSelector((state: RootState) => state.sort.sortType);
   const dispatch = useDispatch<AppDispatch>();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParams = Object.fromEntries([...searchParams]);
+  const sortQuery = queryParams.sortQuery || 'Sort by alphabet';
+
   const changeSort = (sortType: SortTypes) => {
     dispatch(setSortType(sortType));
     localStorage.setItem('sortType', sortType);
+    setSearchParams({ ...queryParams, sortQuery: sortType });
   };
 
   useEffect(() => {
-    const savedSortType = localStorage.getItem('sortType');
+    const savedSortType = sortQuery || localStorage.getItem('sortType');
     if (savedSortType) {
       dispatch(setSortType(savedSortType as SortTypes));
     }
-  }, [dispatch]);
+  }, [dispatch, sortQuery]);
 
   return (
     <div className="sort-modal overlay" onClick={() => dispatch(toggleVisibility())}>

@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from './store';
+import { getEmployeesList } from './gateway/gateway';
 import MainPage from './features/MainPage/index';
 import EmployeeProfile from './features/EmployeeProfile/index';
 import ErrorPage from './features/ErrorPage/index';
 import './styles/common.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './store';
-import { getEmployeesList } from './features/Employees/EmployeesSlice';
-import Sort from './features/NavigationBar/components/Sort/Sort';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +29,6 @@ const router = createBrowserRouter([
 
 const App = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const isVisible = useSelector((state: RootState) => state.sort.visible);
 
   useEffect(() => {
     dispatch(getEmployeesList());
@@ -39,7 +37,6 @@ const App = () => {
   return (
     <div className="page">
       <RouterProvider router={router} />
-      {isVisible && <Sort />}
     </div>
   );
 };

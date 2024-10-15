@@ -1,10 +1,10 @@
 import React from 'react';
-import './employees-list.scss';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { filterSortSearchEmployees } from '../../EmployeesSlice';
+import { RootState } from '@/store';
+import { filterSortSearchEmployees } from '@/utils/utils';
 import moment from 'moment';
-import { AppDispatch, RootState } from '@/store';
+import './employees-list.scss';
 
 const EmployeesList = () => {
   const employees = useSelector(filterSortSearchEmployees);
@@ -23,7 +23,7 @@ const EmployeesList = () => {
         }
 
         return (
-          <>
+          <React.Fragment key={employee.id}>
             {sortType === 'Sort by birthday'
               ? showYear && (
                   <li key={`separator-${birthYear}`} className="employees__year-separator">
@@ -54,7 +54,7 @@ const EmployeesList = () => {
                 </div>
               </div>
             </li>
-          </>
+          </React.Fragment>
         );
       })}
     </ul>

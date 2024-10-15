@@ -1,39 +1,47 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { Employee } from '@/types/employeesDirectoryTypes';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Employee, ErrorType, TypeLoading } from '@/types/employeesDirectoryTypes';
+import { getEmployeeProfile } from '@/gateway/gateway';
 
-const initialState: Employee = {
-  id: '',
-  name: '',
-  email: '',
-  tag: '',
-  position: '',
-  phone: '',
-  birthDate: 0,
-  avatar: '',
+type EmployeeProfile = {
+  employee: Employee;
+  isLoading: TypeLoading;
+  error: ErrorType;
 };
 
-export const getEmployeeProfile = createAsyncThunk(
-  'employee/getEmployeeProfile',
-  async (id: string) => {
-    const response = await fetch(`https://66a0f8b17053166bcabd894e.mockapi.io/api/workers/${id}`);
-
-    if (!response.ok) {
-      throw new Error('Failed to fetch employees list');
-    }
-
-    const data: Employee[] = await response.json();
-    return data;
+const initialState: EmployeeProfile = {
+  employee: {
+    id: '',
+    name: '',
+    email: '',
+    tag: '',
+    position: '',
+    phone: '',
+    birthDate: 0,
+    avatar: '',
   },
-);
+  isLoading: 'loading',
+  error: '',
+};
 
 const employeeProfileSlice = createSlice({
   name: 'employeeProfile',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(getEmployeeProfile.fulfilled, (state, action: PayloadAction<Employee[]>) => {
-      return { ...state, ...action.payload };
-    });
+    builder
+      .addCase(getEmployeeProfile.pending, state => {
+        state.isLoading = 'loading';
+        state.error = '';
+      })
+      .addCase(getEmployeeProfile.fulfilled, (state, action: PayloadAction<Employee>) => {
+        state.employee = action.payload;
+        state.isLoading = 'completed';
+        state.error = '';
+      })
+      .addCase(getEmployeeProfile.rejected, state => {
+        state.isLoading = 'failed';
+        state.error = 'Unexpected';
+      });
   },
 });
 

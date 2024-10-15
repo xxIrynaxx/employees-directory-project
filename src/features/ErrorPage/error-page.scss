@@ -1,4 +1,5 @@
 @import '../../styles/breakpoints.scss';
+@import '../../styles/variables.scss';
 
 .error {
   display: flex;
@@ -38,7 +39,7 @@
     font-size: 17px;
     line-height: 22px;
     font-weight: 600;
-    color: #050510;
+    color: $text-color;
   }
 
   &__description {
@@ -47,7 +48,7 @@
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
-    color: #97979b;
+    color: $tag-year-description-color;
   }
 
   &__link {
@@ -55,6 +56,6 @@
     font-size: 16px;
     line-height: 20px;
     font-weight: 700;
-    color: #6534ff;
+    color: $link-active-input-color;
   }
 }

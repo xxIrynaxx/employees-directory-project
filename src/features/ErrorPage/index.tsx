@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { ErrorType } from '@/types/employeesDirectoryTypes';
-import './error-page.scss';
 import { errorDetails } from './errorSlice';
-import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
+import './error-page.scss';
 
 type ErrorProps = {
   type: ErrorType;
@@ -14,6 +14,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ type }) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+
   const navigate = useNavigate();
 
   useEffect(() => {

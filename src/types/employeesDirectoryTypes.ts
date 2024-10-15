@@ -1,5 +1,3 @@
-import SearchBar from '@/features/NavigationBar/components/SearchBar/SearchBar';
-
 export type Employee = {
   id: string;
   name: string;
@@ -35,10 +33,4 @@ export type ErrorObject = {
   errorTitle: string;
   errorDescription: string;
   link: string;
-};
-
-export type QueryParams = {
-  searchBy?: SearchBy;
-  sortBy?: SortTypes;
-  filterPosition?: FilterByPosition;
 };

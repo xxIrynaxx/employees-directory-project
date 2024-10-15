@@ -20,10 +20,5 @@ const positionFilterSlice = createSlice({
   },
 });
 
-export const filteresEmployeesByPosition = (state: RootState) => {
-  const employees = state.employees.employeesList;
-  const position = state.position.positionFilter;
-};
-
 export const { setPositionFilter } = positionFilterSlice.actions;
 export default positionFilterSlice.reducer;

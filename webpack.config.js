@@ -52,7 +52,7 @@ module.exports = (_, argv) => {
       new CopyPlugin({
         patterns: [
           { from: 'public/assets', to: 'assets' },
-          // { from: 'public/favicon.svg', to: '' },
+          { from: 'public/favicon.svg', to: '' },
         ],
       }),
     ],

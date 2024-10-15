@@ -1,10 +1,10 @@
-import { FilterByPosition, positionFilterList } from '@/types/employeesDirectoryTypes';
 import React, { useEffect } from 'react';
-import './position-filter.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '@/store';
-import { setPositionFilter } from '../../positionFilterSlice';
 import { useSearchParams } from 'react-router-dom';
+import { AppDispatch, RootState } from '@/store';
+import { FilterByPosition, positionFilterList } from '@/types/employeesDirectoryTypes';
+import { setPositionFilter } from '../../positionFilterSlice';
+import './position-filter.scss';
 
 const PositionFilter = () => {
   const selectedFilter = useSelector((state: RootState) => state.position.positionFilter);
@@ -12,7 +12,7 @@ const PositionFilter = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = Object.fromEntries([...searchParams]);
-  const positionQuery = queryParams.positionQuery || 'all';
+  const positionQuery = queryParams.positionQuery || 'All';
 
   const changeFilter = (filterType: FilterByPosition) => {
     dispatch(setPositionFilter(filterType));

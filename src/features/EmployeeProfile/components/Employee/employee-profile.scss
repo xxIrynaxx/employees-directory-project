@@ -1,4 +1,5 @@
-@import '../../styles/breakpoints.scss';
+@import '../../../../styles/breakpoints.scss';
+@import '../../../../styles/variables.scss';
 
 .employee-profile {
   width: 100%;
@@ -10,12 +11,12 @@
     margin: 0 auto;
     max-width: 1280px;
     min-height: 100vh;
-    box-shadow: 0 3px 200px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: $page-profile-box-shadow;
   }
 
   &__card-info {
     padding: 57px 0 9px 0;
-    background-color: #f7f7f8;
+    background-color: $profile-card-background-color;
 
     @include for-desktop {
       padding: 22px 0 24px 0;
@@ -63,14 +64,14 @@
       font-size: 24px;
       font-weight: 700;
       line-height: 28px;
-      color: #050510;
+      color: $text-color;
     }
 
     &-tag {
       margin-top: 4px;
       font-size: 17px;
       line-height: 22px;
-      color: #97979b;
+      color: $tag-year-description-color;
     }
 
     &-position {
@@ -78,7 +79,7 @@
       font-size: 13px;
       line-height: 16px;
       text-align: center;
-      color: #55555c;
+      color: $position-birthdate-color;
     }
   }
 
@@ -109,7 +110,7 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 20px;
-      color: #050510;
+      color: $text-color;
 
       @include for-desktop {
         padding: 20px 12px 24px 0;
@@ -122,7 +123,7 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 20px;
-      color: #97979b;
+      color: $tag-year-description-color;
 
       @include for-desktop {
         margin-left: auto;
@@ -154,7 +155,7 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 20px;
-      color: #050510;
+      color: $text-color;
 
       @include for-desktop {
         padding-top: 6px;
