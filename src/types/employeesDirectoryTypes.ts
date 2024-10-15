@@ -36,3 +36,9 @@ export type ErrorObject = {
   errorDescription: string;
   link: string;
 };
+
+export type QueryParams = {
+  searchBy?: SearchBy;
+  sortBy?: SortTypes;
+  filterPosition?: FilterByPosition;
+};
