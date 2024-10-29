@@ -1,36 +1,31 @@
-import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store';
-import { getEmployeeProfile } from '@/gateway/gateway';
+import React from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
-import ErrorPage from '@/features/ErrorPage';
 import SkeletonEmployee from '../SkeletonEmployee/SkeletonEmployee';
+import { selectEmployeeById, selectLoading } from '@/features/Employees/employeesSelector';
+import { RootState } from '@/store';
+import ErrorPage from '@/features/ErrorPage';
 
 const Employee = () => {
   const { id } = useParams();
-  const employee = useSelector((state: RootState) => state.employeeProfile.employee);
-  const isLoading = useSelector((state: RootState) => state.employeeProfile.isLoading);
-  const dispatch = useDispatch();
+  const location = useLocation();
+  const isLoading = useSelector(selectLoading);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(getEmployeeProfile(id));
-    }
-  }, [dispatch, id]);
-
-  if (isLoading === 'failed') {
-    return <ErrorPage type="Unexpected" />;
-  }
+  const employee = useSelector((state: RootState) => selectEmployeeById(state, id!));
 
   if (isLoading === 'loading') {
     return <SkeletonEmployee />;
   }
 
+  if (!employee) {
+    return <ErrorPage type="Unexpected" />;
+  }
+
   return (
     <>
       <div className="employee-profile__card-info">
-        <Link to="/">
+        <Link to={location.state?.from || '/'}>
           <img
             src="/assets/icon/left.svg"
             alt="Left arrow exit profile"

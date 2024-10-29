@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { SortTypes } from '@/types/employeesDirectoryTypes';
 
-const savedSortType = (localStorage.getItem('sortType') as SortTypes) || 'Sort by alphabet';
+const getInitialSortType = (): SortTypes => {
+  const savedSortType = localStorage.getItem('sortType');
+  return savedSortType === 'birthday' ? 'Sort by birthday' : 'Sort by alphabet';
+};
 
-interface SortState {
+type SortState = {
   sortType: SortTypes;
   visible: boolean;
-}
+};
 
 const initialState: SortState = {
-  sortType: savedSortType,
+  sortType: getInitialSortType(),
   visible: false,
 };
 
@@ -25,6 +28,10 @@ const sortSlice = createSlice({
     },
   },
 });
+
+export const isSortType = (value: any): value is SortTypes => {
+  return value === 'Sort by alphabet' || value === 'Sort by birthday';
+};
 
 export const { setSortType, toggleVisibility } = sortSlice.actions;
 export default sortSlice.reducer;

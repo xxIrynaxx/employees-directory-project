@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import { filterSortSearchEmployees } from '@/utils/utils';
+import { selectLoading } from './employeesSelector';
 import EmployeesList from './components/EmployeesList/EmployeesList';
 import EmployeesListSkeleton from './components/SkeletonEmployees/SkeletonEmployees';
 import ErrorPage from '../ErrorPage';
 
 const Employees = () => {
-  const isLoading = useSelector((state: RootState) => state.employees.isLoading);
+  const isLoading = useSelector(selectLoading);
   const employees = useSelector(filterSortSearchEmployees);
 
   if (isLoading === 'loading') {

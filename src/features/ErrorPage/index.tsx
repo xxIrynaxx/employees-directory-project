@@ -10,12 +10,11 @@ type ErrorProps = {
 };
 
 const ErrorPage: React.FC<ErrorProps> = ({ type }) => {
+  const navigate = useNavigate();
   const { errorImage, errorTitle, errorDescription, link } = errorDetails[type];
 
   const isMobile = useMediaQuery({ query: '(max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (type === 'Unexpected' && isMobile) {
@@ -29,6 +28,7 @@ const ErrorPage: React.FC<ErrorProps> = ({ type }) => {
       : type === 'Unexpected' && isDesktop
       ? 'error__unexpected-desktop'
       : 'error';
+
   return (
     <div className={errorUnexpectedClass}>
       <img className="error__img" src={errorImage} alt="Error" />

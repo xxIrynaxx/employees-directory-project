@@ -1,31 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { RootState, AppDispatch } from '@/store';
+import { AppDispatch } from '@/store';
+import { selectSort } from '../../navigationSelector';
 import { SortTypes } from '@/types/employeesDirectoryTypes';
 import { setSortType, toggleVisibility } from '../../sortSlice';
 import './sort.scss';
 
 const Sort = () => {
-  const selectedSort = useSelector((state: RootState) => state.sort.sortType);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedSort = useSelector(selectSort);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = Object.fromEntries([...searchParams]);
-  const sortQuery = queryParams.sortQuery || 'Sort by alphabet';
+  const sortBy = queryParams.sortBy || 'alphabet';
 
   const changeSort = (sortType: SortTypes) => {
+    const sortKey = sortType === 'Sort by alphabet' ? 'alphabet' : 'birthday';
     dispatch(setSortType(sortType));
-    localStorage.setItem('sortType', sortType);
-    setSearchParams({ ...queryParams, sortQuery: sortType });
+    localStorage.setItem('sortType', sortKey);
+    setSearchParams({ ...queryParams, sortBy: sortKey });
   };
-
-  useEffect(() => {
-    const savedSortType = sortQuery || localStorage.getItem('sortType');
-    if (savedSortType) {
-      dispatch(setSortType(savedSortType as SortTypes));
-    }
-  }, [dispatch, sortQuery]);
 
   return (
     <div className="sort-modal overlay" onClick={() => dispatch(toggleVisibility())}>

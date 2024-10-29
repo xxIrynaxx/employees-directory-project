@@ -1,31 +1,32 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '@/store';
+import { AppDispatch } from '@/store';
 import { FilterByPosition, positionFilterList } from '@/types/employeesDirectoryTypes';
 import { setPositionFilter } from '../../positionFilterSlice';
+import { selectFilter } from '../../navigationSelector';
 import './position-filter.scss';
 
 const PositionFilter = () => {
-  const selectedFilter = useSelector((state: RootState) => state.position.positionFilter);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const selectedFilter = useSelector(selectFilter);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = Object.fromEntries([...searchParams]);
-  const positionQuery = queryParams.positionQuery || 'All';
+  const position = queryParams.position || 'All';
 
   const changeFilter = (filterType: FilterByPosition) => {
     dispatch(setPositionFilter(filterType));
     localStorage.setItem('filterType', filterType);
-    setSearchParams({ ...queryParams, positionQuery: filterType });
+    setSearchParams({ ...queryParams, position: filterType });
   };
 
   useEffect(() => {
-    const savedFilterType = positionQuery || localStorage.getItem('filterType');
+    const savedFilterType = position || localStorage.getItem('filterType');
     if (savedFilterType) {
       dispatch(setPositionFilter(savedFilterType as FilterByPosition));
     }
-  }, [dispatch, positionQuery]);
+  }, [dispatch, position]);
 
   return (
     <div className="position-filter">

@@ -1,38 +1,45 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '@/store';
+import { AppDispatch } from '@/store';
+import { searchBarText, selectSort } from '../../navigationSelector';
 import { clearInput, searchEmployees } from '../../searchBarSlice';
 import { toggleVisibility } from '../../sortSlice';
 import './search-bar.scss';
 
 const SearchBar = () => {
-  const text = useSelector((state: RootState) => state.search.text);
-  const sortType = useSelector((state: RootState) => state.sort.sortType);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const text = useSelector(searchBarText);
+  const sortType = useSelector(selectSort);
   const dispatch = useDispatch<AppDispatch>();
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const queryParams = Object.fromEntries([...searchParams]);
-  const searchQuery = queryParams.searchQuery || '';
+  const searchText = queryParams.searchText || '';
 
   const changeSearchBar = (searchText: string) => {
     dispatch(searchEmployees(searchText));
     localStorage.setItem('searchText', searchText);
-    setSearchParams({ ...queryParams, searchQuery: searchText });
+    if (searchText.trim() === '') {
+      const { searchText, ...restParams } = queryParams;
+      setSearchParams(restParams);
+    } else {
+      setSearchParams({ ...queryParams, searchText: searchText });
+    }
   };
 
   const handleClearInput = () => {
     dispatch(clearInput());
     localStorage.removeItem('searchText');
-    setSearchParams({ ...queryParams, searchQuery: '' });
+    const { searchText, ...restParams } = queryParams;
+    setSearchParams(restParams);
   };
 
   useEffect(() => {
-    const savedSearchText = searchQuery || localStorage.getItem('searchText');
+    const savedSearchText = searchText || localStorage.getItem('searchText');
     if (savedSearchText) {
       dispatch(searchEmployees(savedSearchText));
     }
-  }, [dispatch, searchQuery]);
+  }, [dispatch, searchText]);
 
   return (
     <div className="search-bar">
