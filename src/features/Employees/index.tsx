@@ -1,30 +1,38 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { filterSortSearchEmployees } from '@/utils/utils';
 import { selectLoading } from './employeesSelector';
-import EmployeesList from './components/EmployeesList/EmployeesList';
-import EmployeesListSkeleton from './components/SkeletonEmployees/SkeletonEmployees';
+import { SortTypes } from '@/types';
+import { useFilteredEmployees } from '@/utils';
+import { RootState } from '@/store';
+import EmployeesList from './components/EmployeesList';
+import EmployeesListSkeleton from './components/EmployeesSkeleton';
 import ErrorPage from '../ErrorPage';
 
-const Employees = () => {
-  const isLoading = useSelector(selectLoading);
-  const employees = useSelector(filterSortSearchEmployees);
+type EmployeesProps = {
+  sortType: SortTypes;
+};
 
-  if (isLoading === 'loading') {
+const Employees: React.FC<EmployeesProps> = ({ sortType }) => {
+  const employees = useSelector((state: RootState) => state.employees.employeesList);
+  const statusLoading = useSelector(selectLoading);
+
+  const filteredEmployees = useFilteredEmployees(employees);
+
+  if (statusLoading === 'loading') {
     return <EmployeesListSkeleton />;
   }
 
-  if (isLoading === 'failed') {
+  if (statusLoading === 'failed') {
     return <ErrorPage type="Unexpected" />;
   }
 
-  if (!employees.length) {
-    return <ErrorPage type={'NotFound'} />;
+  if (!filteredEmployees.length) {
+    return <ErrorPage type="NotFound" />;
   }
 
   return (
     <div className="employees">
-      <EmployeesList />
+      <EmployeesList sortType={sortType} employees={filteredEmployees} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { RootState } from '@/store';
-import { Employee } from '@/types/employeesDirectoryTypes';
+import { Employee } from '@/types';
 
 export const selectEmployeeById = (state: RootState, id: string): Employee | undefined => {
   return state.employees.employeesList.find(employee => employee.id === id);

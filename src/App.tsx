@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from './store';
-import { getEmployeesList } from './gateway/gateway';
-import MainPage from './features/MainPage/index';
+import { getEmployeesList } from './gateways';
+import MainPage from './layout/MainPage/index';
 import EmployeeProfile from './features/EmployeeProfile/index';
 import ErrorPage from './features/ErrorPage/index';
 import './styles/common.scss';
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <ErrorPage type={'Unexpected'} />,
+    element: <ErrorPage type="Unexpected" />,
   },
 ]);
 

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getEmployeesList } from '@/gateway/gateway';
-import { Employee, ErrorType, TypeLoading } from '@/types/employeesDirectoryTypes';
+import { getEmployeesList } from '@/gateways';
+import { Employee, ErrorType, TypeLoading } from '@/types';
 
 type EmployeeState = {
   employeesList: Employee[];

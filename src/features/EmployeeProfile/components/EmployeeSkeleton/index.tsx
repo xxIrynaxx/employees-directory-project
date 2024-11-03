@@ -1,9 +1,9 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import './skeleton-employee.scss';
+import './index.scss';
 
-const SkeletonEmployee = () => {
+const EmployeeSkeleton = () => {
   return (
     <>
       <div className="skeleton-profile">
@@ -19,4 +19,4 @@ const SkeletonEmployee = () => {
   );
 };
 
-export default SkeletonEmployee;
+export default EmployeeSkeleton;

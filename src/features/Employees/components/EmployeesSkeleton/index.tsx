@@ -1,7 +1,7 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import '../SkeletonEmployees/skeleton-employees.scss';
+import './index.scss';
 
 const EmployeesListSkeleton = () => {
   return (

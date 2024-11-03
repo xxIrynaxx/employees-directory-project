@@ -1,4 +1,4 @@
-import { ErrorType, ErrorObject } from '@/types/employeesDirectoryTypes';
+import { ErrorType, ErrorObject } from '@/types';
 
 export const errorDetails: Record<ErrorType, ErrorObject> = {
   '': {
