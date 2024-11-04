@@ -49,7 +49,7 @@ const Sort: React.FC<SortProps> = ({ toggleModal }) => {
             type="radio"
             name="sorting"
             value="birthday"
-            checked={currentSort === 'birthday'}
+            checked={currentSort === 'birthDate'}
             onChange={() => changeSort('birthDate')}
           />
           <label htmlFor="birthdaySort" className="sort-modal__radio">
