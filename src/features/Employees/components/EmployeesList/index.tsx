@@ -26,7 +26,7 @@ const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
 
         return (
           <React.Fragment key={id}>
-            {sortType === 'birthday' && showYear && (
+            {sortType === 'birthDate' && showYear && (
               <li key={`separator-${birthYear}`} className="employees__year-separator">
                 <div className="employees__year-label">{birthYear}</div>
               </li>
