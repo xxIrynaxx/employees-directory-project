@@ -1,16 +1,17 @@
 import React from 'react';
 import moment from 'moment';
-import { Link, useLocation } from 'react-router-dom';
-import { Employee, SortTypes } from '@/types';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { Employee } from '@/types';
 import './index.scss';
 
 type EmployeesListProps = {
   employees: Employee[];
-  sortType: SortTypes;
 };
 
-const EmployeesList: React.FC<EmployeesListProps> = ({ employees, sortType }) => {
+const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const sortType = searchParams.get('sortBy');
   let currentYear: number | null = null;
 
   return (
@@ -25,11 +26,9 @@ const EmployeesList: React.FC<EmployeesListProps> = ({ employees, sortType }) =>
 
         return (
           <React.Fragment key={id}>
-            {sortType === 'Sort by birthday' && showYear && (
+            {sortType === 'birthday' && showYear && (
               <li key={`separator-${birthYear}`} className="employees__year-separator">
-                <span className="employees__line"></span>
                 <div className="employees__year-label">{birthYear}</div>
-                <span className="employees__line"></span>
               </li>
             )}
             <li className="employees__list-item">

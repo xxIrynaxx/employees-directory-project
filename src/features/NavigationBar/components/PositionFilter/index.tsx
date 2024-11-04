@@ -9,7 +9,13 @@ const PositionFilter = () => {
   const positionFilter = (searchParams.get('position') as FilterByPosition) || 'All';
 
   const changeFilter = (filterType: FilterByPosition) => {
-    setSearchParams({ ...Object.fromEntries(searchParams.entries()), position: filterType });
+    if (filterType === 'All') {
+      searchParams.delete('position');
+      setSearchParams(searchParams);
+    } else {
+      searchParams.set('position', filterType);
+      setSearchParams(searchParams);
+    }
   };
 
   return (

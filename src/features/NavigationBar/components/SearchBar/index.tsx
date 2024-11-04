@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SortTypes } from '@/types';
 import './index.scss';
 
 type SearchBarProps = {
   toggleModal: () => void;
-  sortType: SortTypes;
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ toggleModal, sortType }) => {
+const SearchBar: React.FC<SearchBarProps> = ({ toggleModal }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [text, setText] = useState<string>('');
+
   const initialSearchText = searchParams.get('searchText') || '';
+  const currentSort = searchParams.get('sortBy') || 'alphabet';
 
   const queryParams = Object.fromEntries([...searchParams]);
 
@@ -52,7 +52,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ toggleModal, sortType }) => {
         />
         {text.length === 0 && (
           <img
-            src={`/assets/icon/list-ui-alt${sortType === 'Sort by alphabet' ? '' : '-active'}.svg`}
+            src={`/assets/icon/list-ui-alt${currentSort === 'alphabet' ? '' : '-active'}.svg`}
             alt="Sort icon"
             className="search-bar__sort-icon"
             onClick={() => toggleModal()}

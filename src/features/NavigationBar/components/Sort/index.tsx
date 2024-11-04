@@ -1,29 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SortTypes } from '@/types';
 import './index.scss';
 
 type SortProps = {
   toggleModal: () => void;
-  sortType: SortTypes;
-  setSortType: (sortType: SortTypes) => void;
 };
 
-const Sort: React.FC<SortProps> = ({ toggleModal, sortType, setSortType }) => {
+const Sort: React.FC<SortProps> = ({ toggleModal }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    if (!searchParams.get('sortBy')) {
-      const sortBy = searchParams.get('sortBy') || 'alphabet';
-      const initialSortType = sortBy === 'alphabet' ? 'Sort by alphabet' : 'Sort by birthday';
-      setSortType(initialSortType as SortTypes);
-    }
-  }, []);
+  const currentSort = searchParams.get('sortBy') || 'alphabet';
 
-  const changeSort = (newSortType: SortTypes) => {
-    const sortKey = newSortType === 'Sort by alphabet' ? 'alphabet' : 'birthday';
-    setSortType(newSortType);
-    setSearchParams({ sortBy: sortKey });
+  const changeSort = (sortType: 'alphabet' | 'birthDate') => {
+    if (sortType === 'alphabet') {
+      searchParams.delete('sortBy');
+      setSearchParams(searchParams);
+    } else {
+      searchParams.set('sortBy', sortType);
+      setSearchParams(searchParams);
+    }
   };
 
   return (
@@ -41,9 +36,9 @@ const Sort: React.FC<SortProps> = ({ toggleModal, sortType, setSortType }) => {
             id="alphabetSort"
             type="radio"
             name="sorting"
-            value="Sort by alphabet"
-            checked={sortType === 'Sort by alphabet'}
-            onChange={() => changeSort('Sort by alphabet')}
+            value="alphabet"
+            checked={currentSort === 'alphabet'}
+            onChange={() => changeSort('alphabet')}
           />
           <label htmlFor="alphabetSort" className="sort-modal__radio">
             By alphabet
@@ -53,9 +48,9 @@ const Sort: React.FC<SortProps> = ({ toggleModal, sortType, setSortType }) => {
             id="birthdaySort"
             type="radio"
             name="sorting"
-            value="Sort by birthday"
-            checked={sortType === 'Sort by birthday'}
-            onChange={() => changeSort('Sort by birthday')}
+            value="birthday"
+            checked={currentSort === 'birthday'}
+            onChange={() => changeSort('birthDate')}
           />
           <label htmlFor="birthdaySort" className="sort-modal__radio">
             By birthday

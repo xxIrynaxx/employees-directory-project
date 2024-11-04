@@ -20,8 +20,6 @@ export const positionFilterList: FilterByPosition[] = [
   'Android',
 ];
 
-export type SortTypes = 'Sort by alphabet' | 'Sort by birthday';
-
 export type SearchBy = 'name' | 'tag' | 'email';
 
 export type TypeLoading = 'loading' | 'completed' | 'failed';

@@ -5,7 +5,7 @@ import { Employee, ErrorType, TypeLoading } from '@/types';
 type EmployeeState = {
   employeesList: Employee[];
   isLoading: TypeLoading;
-  error: ErrorType;
+  error: ErrorType | string | null;
 };
 
 const initialState: EmployeeState = {
@@ -31,13 +31,14 @@ const employeesListSlice = createSlice({
         state.isLoading = 'completed';
       }
     }),
-      builder.addCase(getEmployeesList.rejected, state => {
+      builder.addCase(getEmployeesList.rejected, (state, action) => {
         state.employeesList = [];
         state.isLoading = 'failed';
-        state.error = 'Unexpected';
+        state.error = action.payload || 'Unexpected';
       }),
       builder.addCase(getEmployeesList.pending, state => {
         state.isLoading = 'loading';
+        state.error = '';
       });
   },
 });
