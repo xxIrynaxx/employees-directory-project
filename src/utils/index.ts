@@ -22,10 +22,12 @@ export const useFilteredEmployees = (employees: Employee[]): Employee[] => {
 
     console.log(sortBy);
 
-    return sortBy === 'birthday'
-      ? filteredData.sort(
-          (a, b) => new Date(a.birthDate).getTime() - new Date(b.birthDate).getTime(),
-        )
-      : filteredData.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    return sortBy === 'birthDate'
+      ? filteredData
+          .slice()
+          .sort((a, b) => new Date(a.birthDate).getTime() - new Date(b.birthDate).getTime())
+      : filteredData
+          .slice()
+          .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
   }, [employees, searchParams]);
 };
