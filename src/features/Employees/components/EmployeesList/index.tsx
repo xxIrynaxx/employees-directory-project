@@ -11,7 +11,7 @@ type EmployeesListProps = {
 const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const sortType = searchParams.get('sortBy');
+  const sortType = searchParams.get('sortBy') === 'birthDate';
   let currentYear: number | null = null;
 
   return (
@@ -26,7 +26,7 @@ const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
 
         return (
           <React.Fragment key={id}>
-            {sortType === 'birthDate' && showYear && (
+            {sortType && showYear && (
               <li key={`separator-${birthYear}`} className="employees__year-separator">
                 <div className="employees__year-label">{birthYear}</div>
               </li>
@@ -38,7 +38,7 @@ const EmployeesList: React.FC<EmployeesListProps> = ({ employees }) => {
                   <div className="employees__name-tag">
                     <div className="employees__name">{name}</div>
                     <div className="employees__tag">{tag}</div>
-                    {sortType === 'Sort by birthday' && (
+                    {sortType && (
                       <span className="employees__birthdate">
                         {moment(birthDate).format('DD MMM')}
                       </span>

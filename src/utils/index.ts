@@ -22,7 +22,7 @@ export const useFilteredEmployees = (employees: Employee[]): Employee[] => {
 
     console.log(sortBy);
 
-    return sortBy === 'birthday'
+    return sortBy === 'birthDate'
       ? filteredData.sort(
           (a, b) => new Date(a.birthDate).getTime() - new Date(b.birthDate).getTime(),
         )

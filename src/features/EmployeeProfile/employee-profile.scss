@@ -31,136 +31,136 @@
     }
   }
 
-  &__card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    bottom: 12px;
-
-    @include for-desktop {
-      margin-top: 23px;
-      bottom: 0;
-    }
-
-    &-img {
-      width: 104px;
-      height: 104px;
-      border-radius: 100%;
-    }
-
-    &-information {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &-name-tag {
-      display: flex;
-      margin-top: 24px;
-    }
-
-    &-name {
-      margin-right: 4px;
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 28px;
-      color: $text-color;
-    }
-
-    &-tag {
-      margin-top: 4px;
-      font-size: 17px;
-      line-height: 22px;
-      color: $tag-year-description-color;
-    }
-
-    &-position {
-      margin-top: 12px;
-      font-size: 13px;
-      line-height: 16px;
-      text-align: center;
-      color: $position-birthdate-color;
-    }
-  }
-
   &__additional-info {
     margin: 8px 16px 0 16px;
   }
+}
 
-  &__birthdate {
+.profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 12px;
+
+  @include for-desktop {
+    margin-top: 23px;
+    bottom: 0;
+  }
+
+  &__img {
+    width: 104px;
+    height: 104px;
+    border-radius: 100%;
+  }
+
+  &__information {
     display: flex;
-    margin-bottom: 6px;
-    min-width: 343px;
-    height: 60px;
+    flex-direction: column;
+  }
+
+  &__member {
+    display: flex;
+    margin-top: 24px;
+  }
+
+  &__name {
+    margin-right: 4px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    color: $text-color;
+  }
+
+  &__tag {
+    margin-top: 4px;
+    font-size: 17px;
+    line-height: 22px;
+    color: $tag-year-description-color;
+  }
+
+  &__position {
+    margin-top: 12px;
+    font-size: 13px;
+    line-height: 16px;
+    text-align: center;
+    color: $position-birthdate-color;
+  }
+}
+
+.birthday {
+  display: flex;
+  margin-bottom: 6px;
+  min-width: 343px;
+  height: 60px;
+
+  @include for-desktop {
+    max-width: 1248px;
+  }
+
+  &__img {
+    padding: 19px 12px 16px 0;
 
     @include for-desktop {
-      max-width: 1248px;
-    }
-
-    &-img {
-      padding: 19px 12px 16px 0;
-
-      @include for-desktop {
-        padding: 17px 12px 18px 0;
-      }
-    }
-
-    &-date {
-      padding: 22px 0 21px 0;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 20px;
-      color: $text-color;
-
-      @include for-desktop {
-        padding: 20px 12px 24px 0;
-      }
-    }
-
-    &-year {
-      margin-left: auto;
-      padding: 21px 4px 22px 0;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 20px;
-      color: $tag-year-description-color;
-
-      @include for-desktop {
-        margin-left: auto;
-        padding: 20px 4px 23px 0;
-      }
+      padding: 17px 12px 18px 0;
     }
   }
 
-  &__phone {
-    display: flex;
-    align-items: center;
-    width: 343px;
-    height: 60px;
+  &__date {
+    padding: 22px 0 21px 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $text-color;
 
     @include for-desktop {
-      width: 1248px;
+      padding: 20px 12px 24px 0;
     }
+  }
 
-    &-img {
-      padding: 21px 13px 14px 0;
+  &__year {
+    margin-left: auto;
+    padding: 21px 4px 22px 0;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $tag-year-description-color;
 
-      @include for-desktop {
-        padding: 18px 13px 17px 0;
-      }
+    @include for-desktop {
+      margin-left: auto;
+      padding: 20px 4px 23px 0;
     }
+  }
+}
 
-    &-number {
-      margin-top: 5px;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 20px;
-      color: $text-color;
+.phone {
+  display: flex;
+  align-items: center;
+  width: 343px;
+  height: 60px;
 
-      @include for-desktop {
-        padding-top: 6px;
-        margin: 0;
-      }
+  @include for-desktop {
+    width: 1248px;
+  }
+
+  &__img {
+    padding: 21px 13px 14px 0;
+
+    @include for-desktop {
+      padding: 18px 13px 17px 0;
+    }
+  }
+
+  &__number {
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    color: $text-color;
+
+    @include for-desktop {
+      padding-top: 6px;
+      margin: 0;
     }
   }
 }

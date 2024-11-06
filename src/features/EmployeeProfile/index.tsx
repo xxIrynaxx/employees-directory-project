@@ -34,40 +34,28 @@ const EmployeeProfile = () => {
             className="employee-profile__exit"
           />
         </Link>
-        <div className="employee-profile__card">
-          <img className="employee-profile__card-img" src={avatar} alt={name} />
-          <div className="employee-profile__card-information">
-            <div className="employee-profile__card-name-tag">
-              <div className="employee-profile__card-name">{name}</div>
-              <div className="employee-profile__card-tag">{tag}</div>
+        <div className="profile">
+          <img className="profile__img" src={avatar} alt={name} />
+          <div className="profile__information">
+            <div className="profile__member">
+              <div className="profile__name">{name}</div>
+              <div className="profile__tag">{tag}</div>
             </div>
-            <div className="employee-profile__card-position">
+            <div className="profile__position">
               {position ? `${position[0].toUpperCase()}${position.substring(1)}` : ''}
             </div>
           </div>
         </div>
       </div>
       <div className="employee-profile__additional-info">
-        <div className="employee-profile__birthdate">
-          <img
-            src="/assets/icon/favorite.svg"
-            alt="Star"
-            className="employee-profile__birthdate-img"
-          />
-          <div className="employee-profile__birthdate-date">
-            {moment(birthDate).format('D MMMM YYYY')}
-          </div>
-          <div className="employee-profile__birthdate-year">
-            {`${moment().diff(birthDate, 'years')} years`}
-          </div>
+        <div className="birthday">
+          <img src="/assets/icon/favorite.svg" alt="Star" className="birthday__img" />
+          <div className="birthday__date">{moment(birthDate).format('D MMMM YYYY')}</div>
+          <div className="birthday__year">{`${moment().diff(birthDate, 'years')} years`}</div>
         </div>
-        <div className="employee-profile__phone">
-          <img
-            src="/assets/icon/phone-alt.svg"
-            alt="Phone"
-            className="employee-profile__phone-img"
-          />
-          <div className="employee-profile__phone-number">{phone}</div>
+        <div className="phone">
+          <img src="/assets/icon/phone-alt.svg" alt="Phone" className="phone__img" />
+          <div className="phone__number">{phone}</div>
         </div>
       </div>
     </div>
